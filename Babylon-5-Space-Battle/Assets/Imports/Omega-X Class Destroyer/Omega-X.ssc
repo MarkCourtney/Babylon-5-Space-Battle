@@ -1,0 +1,27 @@
+# Babylon 5 -  EA Omega-X Class Destroyer
+
+"Omega-X Class Destroyer" "c"
+{
+	
+	Class "spacecraft"
+	Mesh "Omega-X.3ds"
+	Radius 0.86
+
+	EllipticalOrbit {
+		Period          1.412
+		SemiMajorAxis   100000
+		Eccentricity    0.0016886
+		Inclination     0 
+		AscendingNode   143.1518
+		ArgOfPericenter 146.2495
+		MeanAnomaly      13.8216
+		Epoch           2450700
+	}
+
+	Obliquity 0  	      
+	RotationOffset 55  	      
+	EquatorAscendingNode  143.1518
+	Albedo        1.0
+	InfoURL "extras/Babylon 5/Info/info_Omega-X.html"
+}
+	

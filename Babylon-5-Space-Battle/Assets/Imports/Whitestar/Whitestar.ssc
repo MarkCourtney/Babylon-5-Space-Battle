@@ -1,0 +1,26 @@
+# Babylon 5 -  Whitestar
+
+"Whitestar" "Eps Eri/Epsilon Eridani 3"
+
+{
+	Class "spacecraft"
+	Mesh "Whitestar.3DS"
+	Radius 0.2378
+
+	EllipticalOrbit {
+		Period          1e12 
+		SemiMajorAxis   33005
+		Eccentricity    0.0016886
+		Inclination     -.9 
+		AscendingNode   343.1518
+		ArgOfPericenter 346.2476
+		MeanAnomaly      13.8216
+		Epoch           2452028.18381755
+	}
+
+	Obliquity -.9  	      
+	RotationOffset 90  	      
+	EquatorAscendingNode  343.1518
+	Albedo        0.10
+}
+
