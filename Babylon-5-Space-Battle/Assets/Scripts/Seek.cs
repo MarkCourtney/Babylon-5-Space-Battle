@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class BryanSeek : MonoBehaviour {
+public class Seek : MonoBehaviour {
 
 	GameObject target;
 	float maxForce, maxSpeed, mass;
@@ -17,7 +17,7 @@ public class BryanSeek : MonoBehaviour {
 	}
 
 
-	Vector3 Seek()
+	Vector3 seek()
 	{
 		Vector3 desired = target.transform.position - transform.position;
 		desired.Normalize();
@@ -36,7 +36,7 @@ public class BryanSeek : MonoBehaviour {
 
 	void Update () {
 		
-		Vector3 acceleration = Seek() / mass;
+		Vector3 acceleration = seek() / mass;
 
 		velocity = velocity + acceleration * Time.deltaTime;
 

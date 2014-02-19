@@ -3,14 +3,14 @@ using System.Collections;
 
 public class Flee : MonoBehaviour {
 
-	GameObject target;
+	public GameObject enemy;
 	float maxForce, maxSpeed, mass;
 	Vector3 velocity, desiredVelocity, steering;
 	
 	
 	void Start () {
 		
-		target = GameObject.FindGameObjectWithTag("Leader");
+		enemy = GameObject.FindGameObjectWithTag("Leader");
 		maxForce = 10;
 		maxSpeed = 50;
 		mass = .1f;
@@ -19,7 +19,7 @@ public class Flee : MonoBehaviour {
 	
 	Vector3 flee()
 	{
-		Vector3 desired = transform.position - target.transform.position;
+		Vector3 desired = transform.position - enemy.transform.position;
 		desired.Normalize();
 		desired *= maxSpeed;
 		

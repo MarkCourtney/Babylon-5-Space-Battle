@@ -13,7 +13,7 @@ public class Arrival : MonoBehaviour {
 	void Start () {
 		
 		//target = GameObject.FindGameObjectWithTag("Target");
-		target = new Vector3(0,0,100);
+		target = new Vector3(0,0,1000);
 		maxForce = 20;
 		maxSpeed = 50;
 		mass = .1f;

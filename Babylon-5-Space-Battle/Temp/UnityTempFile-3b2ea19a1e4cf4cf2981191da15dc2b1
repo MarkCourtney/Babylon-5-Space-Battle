@@ -36,9 +36,12 @@
 -define:ENABLE_PROFILER
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_OSX
+'Assets/LaserShot.cs'
 'Assets/Scripts/Arrival.cs'
 'Assets/Scripts/ArriveToFinalPoint.cs'
 'Assets/Scripts/Battle/BattleCameraChanger.cs'
+'Assets/Scripts/Battle/EnemyFlee.cs'
+'Assets/Scripts/Battle/EnemySeek.cs'
 'Assets/Scripts/Battle/FollowEnemy.cs'
 'Assets/Scripts/Battle/RotateCenterPiece.cs'
 'Assets/Scripts/Battle/TurnOffPortal.cs'
@@ -48,11 +51,13 @@
 'Assets/Scripts/FollowLeader.cs'
 'Assets/Scripts/FollowLeaderAndMove.cs'
 'Assets/Scripts/OffSetPursuit.cs'
+'Assets/Scripts/PathFollowing.cs'
 'Assets/Scripts/PersueAndEvade.cs'
 'Assets/Scripts/Prologue/PrologueCameraChanger.cs'
 'Assets/Scripts/Prologue/TurnOnPortal.cs'
 'Assets/Scripts/Seek.cs'
 'Assets/Scripts/Seperation.cs'
+'Assets/Scripts/Sphere.cs'
 'Assets/Scripts/TimeKeeper.cs'
 'Assets/Scripts/Utilities.cs'
 'Assets/Scripts/WallAvoidance.cs'

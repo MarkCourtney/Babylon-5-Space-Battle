@@ -50,7 +50,6 @@ public class OffSetPursuit : MonoBehaviour {
 		dist = (target - transform.position).magnitude;
 		lookAhead = dist / maxSpeed;
 		target = target + (lookAhead * leader.transform.forward);
-		print (target);
 		return Arrive(target);
 	}
 

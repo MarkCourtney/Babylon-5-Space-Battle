@@ -3,21 +3,22 @@ using System.Collections;
 
 public class TimeKeeper : MonoBehaviour {
 
-	float timer;
+	float totalTime;
 
-	public float Timer {
+	public float TotalTime {
 		get {
-			return timer;
+			return totalTime;
 		}
 	}
 
 	void Start () {
 	
-		timer = 0.0f;
+		totalTime = 0.0f;
 	}
 
 	void Update () {
 	
-		timer += Time.deltaTime;
+		totalTime += Time.deltaTime;
+		//print (totalTime);
 	}
 }

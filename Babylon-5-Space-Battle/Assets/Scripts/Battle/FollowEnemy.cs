@@ -3,7 +3,6 @@ using System.Collections;
 
 public class FollowEnemy : MonoBehaviour {
 
-
 	void Update () {
 	
 		transform.position += transform.forward;

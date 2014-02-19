@@ -46,9 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LaserShot.cs" />
      <Compile Include="Assets\Scripts\Arrival.cs" />
      <Compile Include="Assets\Scripts\ArriveToFinalPoint.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleCameraChanger.cs" />
+     <Compile Include="Assets\Scripts\Battle\EnemyFlee.cs" />
+     <Compile Include="Assets\Scripts\Battle\EnemySeek.cs" />
      <Compile Include="Assets\Scripts\Battle\FollowEnemy.cs" />
      <Compile Include="Assets\Scripts\Battle\RotateCenterPiece.cs" />
      <Compile Include="Assets\Scripts\Battle\TurnOffPortal.cs" />
@@ -58,11 +61,13 @@
      <Compile Include="Assets\Scripts\FollowLeader.cs" />
      <Compile Include="Assets\Scripts\FollowLeaderAndMove.cs" />
      <Compile Include="Assets\Scripts\OffSetPursuit.cs" />
+     <Compile Include="Assets\Scripts\PathFollowing.cs" />
      <Compile Include="Assets\Scripts\PersueAndEvade.cs" />
      <Compile Include="Assets\Scripts\Prologue\PrologueCameraChanger.cs" />
      <Compile Include="Assets\Scripts\Prologue\TurnOnPortal.cs" />
      <Compile Include="Assets\Scripts\Seek.cs" />
      <Compile Include="Assets\Scripts\Seperation.cs" />
+     <Compile Include="Assets\Scripts\Sphere.cs" />
      <Compile Include="Assets\Scripts\TimeKeeper.cs" />
      <Compile Include="Assets\Scripts\Utilities.cs" />
      <Compile Include="Assets\Scripts\WallAvoidance.cs" />
