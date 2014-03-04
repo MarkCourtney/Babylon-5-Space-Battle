@@ -2,27 +2,35 @@
 using System.Collections.Generic;
 using System.Collections;
 
-public class PathFollowing : MonoBehaviour {
+public class PathFollowing : TimeKeeper {
 
 	//new Vector3(50,-130,1200), new Vector3(130,-60,1100)};
 	//Vector3[] pathPositions = {new Vector3(50, 0, 500), new Vector3(0,-100,700), new Vector3(50,-130,1200), new Vector3(130,-60,1100)};
 	//new Vector3(240, 10, 510)
-	Vector3[] pathPositions = {new Vector3(245, 10, 510), new Vector3(200,-160,685), new Vector3(-200, -40, 1600)};
+	Vector3[] pathPositions = {new Vector3(245, 10, 510), new Vector3(200,-160,685), new Vector3(-110, -90, 1280), new Vector3(-100, 40, 1400), new Vector3(-100, 40, 1150), new Vector3(20, -10, 1050), new Vector3(123, 0, 890)};
 	GameObject target;
 	float maxForce, maxSpeed, mass;
 	Vector3 desiredVelocity, steering, acceleration;
 	Vector3 velocity;
 	int currentPathPos;
-	public GameObject laser;
+	public GameObject laserShort, laserLong;
 	float time;
 	int count;
-	
+	TimeKeeper tk;
+	GameObject timeHolder;
+	bool shootLaser;
+
 	void Start () {
 
 		maxForce = 10;
 		maxSpeed = 50;
 		mass = .1f;
 		currentPathPos = 0;
+
+		timeHolder = GameObject.FindGameObjectWithTag("Time");
+		tk = timeHolder.GetComponent<TimeKeeper>();
+
+		shootLaser = false;
 	}
 
 
@@ -34,6 +42,7 @@ public class PathFollowing : MonoBehaviour {
 			currentPathPos++;
 		}
 	}
+
 
 	Vector3 seek()
 	{
@@ -174,27 +183,31 @@ public class PathFollowing : MonoBehaviour {
 
 
 
-
-
 	void Update () {
 	
 		time += Time.deltaTime;
 
-		//print (time);
-
-		if(time > 30)
+		if((tk.TotalTime > 25 && tk.TotalTime < 29) || tk.TotalTime > 41 && tk.TotalTime < 44 || tk.TotalTime > 48 && tk.TotalTime < 51)
 		{
-			if(time > 0.5f && count < 10)
+			if(time > 1f && count < 15)
 			{
-				Instantiate(laser, transform.position + new Vector3(0.5f, 0.4f, 4.5f), transform.rotation);
-				Instantiate(laser, transform.position + new Vector3(-0.5f, 0.4f, 4.5f), transform.rotation);
+				Instantiate(laserShort, transform.position + new Vector3(0.5f, 0.4f, 4.5f), transform.rotation);
+				Instantiate(laserShort, transform.position + new Vector3(-0.5f, 0.4f, 4.5f), transform.rotation);
 				time = 0;
 				count++;
 			}
-			else if(time > 7f)
+			else if(time > 4f)
 			{
 				count = 0;
 			}
+		}
+
+
+
+		if(tk.TotalTime > 26 && !shootLaser)
+		{
+			Instantiate(laserLong, transform.position + new Vector3(0, 0, 5), transform.rotation);
+			shootLaser = true;
 		}
 
 		checkClose();
@@ -216,6 +229,11 @@ public class PathFollowing : MonoBehaviour {
 
 		if(Physics.Raycast(transform.position, transform.forward, out hit, 150.0f))
 		{
+			if(!shootLaser)
+			{
+				Instantiate(laserLong, transform.position + new Vector3(0, 0, 5), transform.rotation);
+				shootLaser = true;
+			}
 			Debug.DrawRay(transform.position, hit.point, Color.red);
 
 			if(hit.transform != transform)

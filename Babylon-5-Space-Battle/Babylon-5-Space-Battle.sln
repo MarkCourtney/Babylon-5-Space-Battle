@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{385B23FE-9B57-444A-517A-9A4D2B1B0E90}") = "Babylon-5-Space-Battle", "Assembly-CSharp.csproj", "{EEB1C1C9-84D9-342C-6D93-B1762A42CB8F}"
 EndProject
+Project("{385B23FE-9B57-444A-517A-9A4D2B1B0E90}") = "Babylon-5-Space-Battle", "Assembly-UnityScript-firstpass.unityproj", "{AB705E71-4E93-E39A-78D8-FAE831381634}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{EEB1C1C9-84D9-342C-6D93-B1762A42CB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEB1C1C9-84D9-342C-6D93-B1762A42CB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEB1C1C9-84D9-342C-6D93-B1762A42CB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB705E71-4E93-E39A-78D8-FAE831381634}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB705E71-4E93-E39A-78D8-FAE831381634}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB705E71-4E93-E39A-78D8-FAE831381634}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB705E71-4E93-E39A-78D8-FAE831381634}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																									GlobalSection(MonoDevelopProperties) = preSolution
+																																																																			GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

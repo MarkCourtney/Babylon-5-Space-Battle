@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OffSetPursuit : MonoBehaviour {
+public class OffSetPursuit : TimeKeeper {
 
 	GameObject leader;
 	Vector3 target, targetOffSet;
@@ -10,19 +10,32 @@ public class OffSetPursuit : MonoBehaviour {
 	float dist;
 	Vector3 velocity;
 	float mass;
+	float timeHit, time;
 
 	float distance, slowingDistance, rampedSpeed, clippedSpeed;
 	Vector3 desiredVelocity, steering;
 	Vector3 desired;
+	int count;
+	public LaserShot laserShort;
+	Seek seek;
+	public bool stayFollowing;
+
+	
+	TimeKeeper tk;
+	GameObject timeHolder;
 
 
 	void Start () {
 	
+		seek = GetComponent<Seek>();
 		leader = GameObject.FindGameObjectWithTag("Leader");
 		maxForce = 10f;
 		maxSpeed = 50f;
 		mass = .1f;
 		slowingDistance = 20f;
+
+		timeHolder = GameObject.FindGameObjectWithTag("Time");
+		tk = timeHolder.GetComponent<TimeKeeper>();
 	}
 
 
@@ -54,6 +67,48 @@ public class OffSetPursuit : MonoBehaviour {
 	}
 
 	void Update () {
+
+		time += Time.deltaTime;
+
+		if((tk.TotalTime > 25 && tk.TotalTime < 29) || tk.TotalTime > 41 && tk.TotalTime < 44 || tk.TotalTime > 48 && tk.TotalTime < 51)
+		{
+			if(time > timeHit && count < 15)
+			{
+				Instantiate(laserShort, transform.position + new Vector3(0.5f, 0.4f, 4.5f), transform.rotation);
+				Instantiate(laserShort, transform.position + new Vector3(-0.5f, 0.4f, 4.5f), transform.rotation);
+				time = 0;
+				count++;
+				timeHit = Random.Range(0.5f, 1);
+			}
+			else if(time > 4f)
+			{
+				count = 0;
+			}
+		}
+
+		if(tk.TotalTime > 37 && !stayFollowing)
+		{
+			// turn on other script
+			// remove this script
+			seek.enabled = true;
+			Destroy(gameObject.GetComponent("OffSetPursuit"));
+		}
+
+		if(tk.TotalTime > 41 && tk.TotalTime < 44)
+		{
+			print ("ASD");
+			if(time > 1f && count < 15)
+			{
+				Instantiate(laserShort, transform.position + new Vector3(0.5f, 0.4f, 4.5f), transform.rotation);
+				Instantiate(laserShort, transform.position + new Vector3(-0.5f, 0.4f, 4.5f), transform.rotation);
+				time = 0;
+				count++;
+			}
+			else if(time > 4f)
+			{
+				count = 0;
+			}
+		}
 
 
 		Vector3 acceleration = OffSetArrive() / mass;
@@ -91,5 +146,14 @@ public class OffSetPursuit : MonoBehaviour {
 			transform.LookAt(transform.position + transform.forward, tempUp);
 		}
 		//transform.rotation = Quaternion.LookRotation(velocity);
+	}
+
+
+	void OnCollisionEnter(Collision col)
+	{
+		if(col.gameObject.name == "Omega-X")
+		{
+			Destroy(gameObject);
+		}
 	}
 }

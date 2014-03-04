@@ -63,7 +63,7 @@ public class EnemySeek : MonoBehaviour {
 			}
 			else
 			{
-				print ("B");
+
 				acceleration = seek(target.transform.position) / mass;
 			}
 		}

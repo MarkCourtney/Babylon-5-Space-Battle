@@ -46,7 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LaserShot.cs" />
+     <Compile Include="Assets\DestroyParticleEffect.cs" />
+     <Compile Include="Assets\DestroyPrefab.cs" />
+     <Compile Include="Assets\Explode.cs" />
+     <Compile Include="Assets\RotateCannon.cs" />
      <Compile Include="Assets\Scripts\Arrival.cs" />
      <Compile Include="Assets\Scripts\ArriveToFinalPoint.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleCameraChanger.cs" />
@@ -60,6 +63,8 @@
      <Compile Include="Assets\Scripts\Flee.cs" />
      <Compile Include="Assets\Scripts\FollowLeader.cs" />
      <Compile Include="Assets\Scripts\FollowLeaderAndMove.cs" />
+     <Compile Include="Assets\Scripts\LaserLongShot.cs" />
+     <Compile Include="Assets\Scripts\LaserShot.cs" />
      <Compile Include="Assets\Scripts\OffSetPursuit.cs" />
      <Compile Include="Assets\Scripts\PathFollowing.cs" />
      <Compile Include="Assets\Scripts\PersueAndEvade.cs" />
@@ -72,6 +77,9 @@
      <Compile Include="Assets\Scripts\Utilities.cs" />
      <Compile Include="Assets\Scripts\WallAvoidance.cs" />
      <Compile Include="Assets\Scripts\Wander.cs" />
+ <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
+ <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
