@@ -1,38 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RotateCannon : MonoBehaviour {
+public class RotateCannon : TimeKeeper {
 
 	public GameObject target;
 	Quaternion currentRot, targetRot;
-	Vector3 look, currentRotVec, targetRotVec;
+	Vector3 look, currentRotVec, targetRotVec, randomVector;
+	float dist;
+	float targetY, prevY;
+	float height;
+	Ray ray;
+	RaycastHit hit;
+	public float shootLaserTime;
 
-	void Start () {
-	
+
+	GameObject timeHolder;
+	TimeKeeper tk;
+
+	void Start()
+	{
+		randomVector = new Vector3(Random.Range(0,0.04f), Random.Range(0,0.04f), Random.Range(0,0.04f));
+
+		timeHolder = GameObject.FindGameObjectWithTag("Time");
+		tk = timeHolder.GetComponent<TimeKeeper>();
 	}
-
 	
 	void Update () {
 	
-		//look = new Vector3(transform.position.x - target.transform.position.x, transform.position.y - target.transform.position.y, transform.position.z - target.transform.position.z);
-		look = transform.position - target.transform.position;
+		Debug.DrawRay(transform.position + new Vector3(-0.75f, 0.5f, 0), (transform.forward + randomVector) * 500, Color.green);
 
-//		currentRot = transform.rotation;
-//		currentRotVec = new Vector3(currentRot.eulerAngles.x, 0, currentRot.eulerAngles.z);
-//
-//		targetRot = Quaternion.LookRotation(look);
-//		targetRotVec = new Vector3(targetRot.eulerAngles.x, 0, 0);
+		if(tk.TotalTime > shootLaserTime && tk.TotalTime < shootLaserTime + 5)
+		{	
+			ray = new Ray(transform.position + new Vector3(-0.75f, 0.5f, 0), transform.forward + randomVector);
 
-		//transform.rotation = Quaternion.Slerp(Quaternion.Euler(currentRotVec), Quaternion.Euler(look), Time.deltaTime);
-		transform.LookAt(-target.transform.position);
+			if(Physics.Raycast(ray, out hit, 500))
+			{
+				
+			}
+		}
 
-
-		Quaternion newRotation = Quaternion.LookRotation(transform.position - target.transform.position, Vector3.forward);
-		
-		newRotation.x = 0.0f;
-		
-		newRotation.y = 0.0f;
-		
-		//transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime);
+		transform.LookAt(target.transform.position);
 	}
 }

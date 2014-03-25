@@ -7,7 +7,7 @@ public class PathFollowing : TimeKeeper {
 	//new Vector3(50,-130,1200), new Vector3(130,-60,1100)};
 	//Vector3[] pathPositions = {new Vector3(50, 0, 500), new Vector3(0,-100,700), new Vector3(50,-130,1200), new Vector3(130,-60,1100)};
 	//new Vector3(240, 10, 510)
-	Vector3[] pathPositions = {new Vector3(245, 10, 510), new Vector3(200,-160,685), new Vector3(-110, -90, 1280), new Vector3(-100, 40, 1400), new Vector3(-100, 40, 1150), new Vector3(20, -10, 1050), new Vector3(123, 0, 890)};
+	Vector3[] pathPositions = {new Vector3(245, 10, 510), new Vector3(200,-160,685), new Vector3(-50, -90, 1280), new Vector3(-100, 40, 1400), new Vector3(-100, 40, 1150), new Vector3(20, -10, 1050), new Vector3(123, 0, 890)};
 	GameObject target;
 	float maxForce, maxSpeed, mass;
 	Vector3 desiredVelocity, steering, acceleration;

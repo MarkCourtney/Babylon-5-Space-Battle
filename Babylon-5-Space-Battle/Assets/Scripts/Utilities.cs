@@ -14,6 +14,15 @@ using System.Collections.Generic;
 
 public class Utilities
 {
+	public static float RandomClamped()
+	{
+		return 1.0f - ((float)RNG.NextDouble() * 2.0f);
+	}
+
+	public static float RandomClamped(float lower, float upper)
+	{
+		return lower + ((float)RNG.NextDouble() * (upper - lower));
+	}
 
     public static Vector3 RandomPosition(float range)
     {

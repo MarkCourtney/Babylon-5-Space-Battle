@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\PersueAndEvade.cs" />
      <Compile Include="Assets\Scripts\Prologue\PrologueCameraChanger.cs" />
      <Compile Include="Assets\Scripts\Prologue\TurnOnPortal.cs" />
+     <Compile Include="Assets\Scripts\RandomWalk.cs" />
      <Compile Include="Assets\Scripts\Seek.cs" />
      <Compile Include="Assets\Scripts\Seperation.cs" />
      <Compile Include="Assets\Scripts\Sphere.cs" />

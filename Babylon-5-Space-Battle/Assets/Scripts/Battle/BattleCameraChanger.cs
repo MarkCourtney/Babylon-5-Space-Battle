@@ -70,7 +70,7 @@ public class BattleCameraChanger : TimeKeeper {
 	
 	void Update () {
 
-		//print (tk.TotalTime);
+		print (tk.TotalTime);
 		if(tk.TotalTime > 34 && changeC)
 		{
 			sCamfL.enabled = true;
