@@ -46,38 +46,29 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DestroyParticleEffect.cs" />
      <Compile Include="Assets\DestroyPrefab.cs" />
-     <Compile Include="Assets\Explode.cs" />
-     <Compile Include="Assets\RotateCannon.cs" />
-     <Compile Include="Assets\Scripts\Arrival.cs" />
-     <Compile Include="Assets\Scripts\ArriveToFinalPoint.cs" />
      <Compile Include="Assets\Scripts\Battle\BattleCameraChanger.cs" />
-     <Compile Include="Assets\Scripts\Battle\EnemyFlee.cs" />
-     <Compile Include="Assets\Scripts\Battle\EnemySeek.cs" />
-     <Compile Include="Assets\Scripts\Battle\FollowEnemy.cs" />
+     <Compile Include="Assets\Scripts\Battle\DestroyParticleEffect.cs" />
+     <Compile Include="Assets\Scripts\Battle\LaserLongShot.cs" />
+     <Compile Include="Assets\Scripts\Battle\LaserShot.cs" />
+     <Compile Include="Assets\Scripts\Battle\OffSetPursuit.cs" />
+     <Compile Include="Assets\Scripts\Battle\PathFollowing.cs" />
+     <Compile Include="Assets\Scripts\Battle\PersueAndAttack.cs" />
+     <Compile Include="Assets\Scripts\Battle\RandomWalk.cs" />
+     <Compile Include="Assets\Scripts\Battle\RotateCannon.cs" />
      <Compile Include="Assets\Scripts\Battle\RotateCenterPiece.cs" />
      <Compile Include="Assets\Scripts\Battle\TurnOffPortal.cs" />
-     <Compile Include="Assets\Scripts\CollisionAvoidance.cs" />
-     <Compile Include="Assets\Scripts\FadeInOut.cs" />
-     <Compile Include="Assets\Scripts\Flee.cs" />
-     <Compile Include="Assets\Scripts\FollowLeader.cs" />
-     <Compile Include="Assets\Scripts\FollowLeaderAndMove.cs" />
-     <Compile Include="Assets\Scripts\LaserLongShot.cs" />
-     <Compile Include="Assets\Scripts\LaserShot.cs" />
-     <Compile Include="Assets\Scripts\OffSetPursuit.cs" />
-     <Compile Include="Assets\Scripts\PathFollowing.cs" />
-     <Compile Include="Assets\Scripts\PersueAndEvade.cs" />
+     <Compile Include="Assets\Scripts\Camera\FadeInOut.cs" />
+     <Compile Include="Assets\Scripts\Camera\FollowLeader.cs" />
+     <Compile Include="Assets\Scripts\Camera\FollowLeaderAndMove.cs" />
+     <Compile Include="Assets\Scripts\Multiple\BackgroundAudio.cs" />
+     <Compile Include="Assets\Scripts\Multiple\FollowEnemy.cs" />
+     <Compile Include="Assets\Scripts\Multiple\TimeKeeper.cs" />
+     <Compile Include="Assets\Scripts\Multiple\Utilities.cs" />
+     <Compile Include="Assets\Scripts\Prologue\ArriveToFinalPoint.cs" />
      <Compile Include="Assets\Scripts\Prologue\PrologueCameraChanger.cs" />
+     <Compile Include="Assets\Scripts\Prologue\PrologueOffSetPursuit.cs" />
      <Compile Include="Assets\Scripts\Prologue\TurnOnPortal.cs" />
-     <Compile Include="Assets\Scripts\RandomWalk.cs" />
-     <Compile Include="Assets\Scripts\Seek.cs" />
-     <Compile Include="Assets\Scripts\Seperation.cs" />
-     <Compile Include="Assets\Scripts\Sphere.cs" />
-     <Compile Include="Assets\Scripts\TimeKeeper.cs" />
-     <Compile Include="Assets\Scripts\Utilities.cs" />
-     <Compile Include="Assets\Scripts\WallAvoidance.cs" />
-     <Compile Include="Assets\Scripts\Wander.cs" />
  <Reference Include="Library\ScriptAssemblies\Assembly-UnityScript-firstpass">
  <HintPath>Library\ScriptAssemblies\Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>

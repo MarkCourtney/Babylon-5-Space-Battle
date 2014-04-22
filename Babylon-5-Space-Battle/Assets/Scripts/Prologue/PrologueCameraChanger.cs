@@ -3,21 +3,13 @@ using System.Collections;
 
 public class PrologueCameraChanger : MonoBehaviour {
 
-	public Camera followCam, stationaryCam;
+	public GameObject followCam, stationaryCam;
 	float time;
-	Vector3[] cameraPos = {new Vector3(-30.9f, 66.6f, -350), new Vector3(0,20,-150)};
-
-
-	FadeInOut fIO;
-	FollowLeader fL;
-	FollowLeaderAndMove fLAM;
+	Vector3[] cameraPos = {new Vector3(-30.9f, 66.6f, -350), new Vector3(0, 15,-150)};
+	
 
 	void Start () {
  	
-		fIO = GetComponent<FadeInOut>();
-		fL = GetComponent<FollowLeader>();
-		fLAM = GetComponent<FollowLeaderAndMove>();
-
 		turnOnFollowCamera();
 
 		time = 0;
@@ -26,14 +18,14 @@ public class PrologueCameraChanger : MonoBehaviour {
 
 	void turnOnStationaryCamera()
 	{
-		stationaryCam.enabled = true;
-		followCam.enabled = false;
+		followCam.SetActive(false);
+		stationaryCam.SetActive(true);
 	}
 
 	void turnOnFollowCamera()
 	{
-		stationaryCam.enabled = false;
-		followCam.enabled = true;
+		stationaryCam.SetActive(false);
+		followCam.SetActive(true);
 	}
 
 	
