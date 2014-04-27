@@ -5,21 +5,23 @@ public class LaserLongShot : MonoBehaviour {
 
 	public GameObject explosion;
 
-	float time;
+	float lifeDuration;
 
 	void Update () {
 		
 		transform.position += transform.forward * 50 * Time.deltaTime;
 
-		time += Time.deltaTime;
+		lifeDuration += Time.deltaTime;
 
-		if(time > 3)
+		// Destroy the gameobject after 3 seconds if it hasn't his anything
+		if(lifeDuration > 3)
 		{
 			Destroy(gameObject);
 		}
 	}
 	
-	
+
+	// When colliding with an object create an explosion
 	void OnCollision(Collision col)
 	{
 		Destroy(gameObject);

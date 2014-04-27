@@ -7,6 +7,7 @@ public class RotateCenterPiece : MonoBehaviour {
 	
 	void Update () {
 	
+		// Rotate the core of the Omega-X
 		transform.RotateAround(transform.position, transform.right, rotSpeed);
 	}
 }

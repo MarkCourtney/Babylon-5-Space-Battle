@@ -10,11 +10,12 @@ public class RandomWalk : TimeKeeper {
 	TimeKeeper tk;
 	GameObject timeHolder;
 	float mass;
-
+	Seek s;
 
 
 	void Start () {
 	
+		s = gameObject.AddComponent<Seek>();
 		mass = 0.175f;
 		maxSpeed = 50;
 		maxForce = 10;
@@ -71,7 +72,7 @@ public class RandomWalk : TimeKeeper {
 				randomWalkTarget = returnRandomPosition();
 			}
 		}
-		return seek(randomWalkTarget);
+		return s.seek(randomWalkTarget, transform.position, velocity, maxSpeed, maxForce);
 	}
 
 

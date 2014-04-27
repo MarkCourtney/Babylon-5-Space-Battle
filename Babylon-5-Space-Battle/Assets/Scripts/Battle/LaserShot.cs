@@ -13,6 +13,7 @@ public class LaserShot : MonoBehaviour {
 
 		transform.position += transform.forward * 100 * Time.deltaTime;
 
+		// Destroy the gameobject after 3 seconds if it hasn't his anything
 		if(lifeDuration > 5)
 		{
 			Destroy(gameObject);
@@ -20,6 +21,7 @@ public class LaserShot : MonoBehaviour {
 	}
 
 
+	// When colliding with an object create an explosion
 	void OnCollisionEnter (Collision col)
 	{
 		if(col.gameObject.name == "Omega-X" || col.gameObject.name.Contains("LaserLong"))

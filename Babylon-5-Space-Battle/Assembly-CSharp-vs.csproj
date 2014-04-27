@@ -59,10 +59,12 @@
      <Compile Include="Assets\Scripts\Battle\RotateCenterPiece.cs" />
      <Compile Include="Assets\Scripts\Battle\TurnOffPortal.cs" />
      <Compile Include="Assets\Scripts\Camera\FadeInOut.cs" />
+     <Compile Include="Assets\Scripts\Camera\FollowEnemy.cs" />
      <Compile Include="Assets\Scripts\Camera\FollowLeader.cs" />
      <Compile Include="Assets\Scripts\Camera\FollowLeaderAndMove.cs" />
+     <Compile Include="Assets\Scripts\Multiple\Arrive.cs" />
      <Compile Include="Assets\Scripts\Multiple\BackgroundAudio.cs" />
-     <Compile Include="Assets\Scripts\Multiple\FollowEnemy.cs" />
+     <Compile Include="Assets\Scripts\Multiple\Seek.cs" />
      <Compile Include="Assets\Scripts\Multiple\TimeKeeper.cs" />
      <Compile Include="Assets\Scripts\Multiple\Utilities.cs" />
      <Compile Include="Assets\Scripts\Prologue\ArriveToFinalPoint.cs" />

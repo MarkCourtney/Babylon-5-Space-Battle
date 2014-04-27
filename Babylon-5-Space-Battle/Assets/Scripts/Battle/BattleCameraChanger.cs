@@ -46,13 +46,15 @@ public class BattleCameraChanger : TimeKeeper {
 		changeC = false;
 	}
 	
-	
+
+	// Turn on the stationary camera
 	void turnOnStationaryCamera()
 	{
 		stationaryCam.gameObject.SetActive(true);
 		followCam.gameObject.SetActive(false);
 	}
-	
+
+	// Turn on the follow camera
 	void turnOnFollowCamera()
 	{
 		followCam.gameObject.SetActive(true);
@@ -61,19 +63,25 @@ public class BattleCameraChanger : TimeKeeper {
 	
 
 	
-	
+	// Change the position and rotation of the desired camera
 	void changeCameraTransform(Camera cam, Vector3 pos, Vector3 rot)
 	{
 		cam.transform.position = pos;
 		cam.transform.rotation = Quaternion.Euler(rot);
 	}
+
 	
 	void Update () {
 
-		if(tk.TotalTime > 78)
+		// Cancel the program when complete
+		if(tk.TotalTime > 95)
 		{
-
+			Application.Quit();
 		}
+
+		// Change between the follow and stationary cameras
+		// The different scripts provide different angles 
+		// And cinematic views for the user
 		if(tk.TotalTime > 73)
 		{
 			turnOnFollowCamera();

@@ -20,6 +20,7 @@ public class AudioController : MonoBehaviour {
 
 	void Update () {
 	
+		// Turn down the volume as the scene is ending
 		if(tk.TotalTime > 75)
 		{
 			ambientNoise.audio.volume -= 0.0045f;

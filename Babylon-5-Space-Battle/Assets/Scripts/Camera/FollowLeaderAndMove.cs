@@ -15,10 +15,12 @@ public class FollowLeaderAndMove : MonoBehaviour {
 
 
 	void Update () {
-		
-		look = (target.transform.position - transform.position);
+
+		// Look at the Leaders position
+		look = target.transform.position - transform.position;
 		transform.rotation = Quaternion.LookRotation(look);
-		
+
+		// Move in a certain direction a defined amount
 		transform.position -= target.transform.forward * amount * Time.deltaTime;
 	}
 }

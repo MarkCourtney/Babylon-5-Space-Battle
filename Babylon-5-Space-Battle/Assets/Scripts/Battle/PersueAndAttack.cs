@@ -7,15 +7,24 @@ public class PersueAndAttack : MonoBehaviour {
 	GameObject targetToKill;
 	public GameObject laserShort;
 	Vector3 target, velocity, desiredVelocity;
-	float distance, maxSpeed, lookAhead, maxForce, mass;
+	float distance, maxSpeed, lookAhead, maxForce, mass, smoothRate, speed;
 	TimeKeeper tk;
 	GameObject timeHolder;
+
+
+	Vector3 globalUp, accelUp, bankUp, tempUp;
 
 
 	int count;
 	float time;
 	
+	Seek s;
+	Arrive a;
+	
 	void Start () {
+		
+		s = gameObject.AddComponent<Seek>();
+		a = gameObject.AddComponent<Arrive>();
 
 		time = 0;
 		targetObjects = GameObject.FindGameObjectsWithTag("Target");
@@ -31,22 +40,6 @@ public class PersueAndAttack : MonoBehaviour {
 		tk = timeHolder.GetComponent<TimeKeeper>();
 	}
 	
-	Vector3 Seek(Vector3 target)
-	{
-		Vector3 desired = target - transform.position;
-		desired.Normalize();
-		desired *= maxSpeed;
-		
-		Vector3 force = desired - velocity;
-		
-		if (force.magnitude > maxForce)
-		{
-			return Vector3.Normalize(force) * maxForce;
-		}
-		
-		return force;
-	}
-	
 	
 	
 	Vector3 Arrive()
@@ -54,13 +47,14 @@ public class PersueAndAttack : MonoBehaviour {
 		distance = (targetToKill.transform.position - transform.position).magnitude;
 		lookAhead = distance / maxSpeed;
 		target = targetToKill.transform.position + (lookAhead * targetToKill.transform.forward);
-		return Seek(target);
+		return s.seek(target, transform.position, velocity, maxSpeed, maxForce);
 	}
 	
 	
 	void Update () {
 
 
+		// If within a distance of 100 then shoot lasers at the target
 		if(Vector3.Distance(transform.position, targetToKill.transform.position) < 100 && tk.TotalTime < 65)
 		{
 			if(count < 5)
@@ -95,30 +89,23 @@ public class PersueAndAttack : MonoBehaviour {
 		
 		transform.position += velocity * Time.deltaTime;
 
-		//transform.rotation = Quaternion.LookRotation(velocity);
-		//transform.rotation = Quaternion.LookRotation(velocity);
-		// the length of this global-upward-pointing vector controls the vehicle's
-		// tendency to right itself as it is rolled over from turning acceleration
-		Vector3 globalUp = new Vector3(0, 0.2f, 0);
-		// acceleration points toward the center of local path curvature, the
-		// length determines how much the vehicle will roll while turning
-		Vector3 accelUp = acceleration * 0.05f;
-		// combined banking, sum of UP due to turning and global UP
-		Vector3 bankUp = accelUp + globalUp;
-		// blend bankUp into vehicle's UP basis vector
-		float smoothRate = Time.deltaTime * 3.0f;
-		Vector3 tempUp = transform.up;
+
+		// Apply banking to the ship
+		globalUp = new Vector3(0, 0.2f, 0);
+		accelUp = acceleration * 0.02f;
+		bankUp = accelUp + globalUp;
+		smoothRate = Time.deltaTime * 3.0f;
+		tempUp = transform.up;
 		Utilities.BlendIntoAccumulator(smoothRate, bankUp, ref tempUp);
 		
-		float speed = velocity.magnitude;
+		speed = velocity.magnitude;
 		if (speed > 0.0001f)
 		{
 			transform.forward = velocity;
 			transform.forward.Normalize();
 			transform.LookAt(transform.position + transform.forward, tempUp);
-
+			
 			velocity *= 0.99f;
 		}
-		
 	}
 }

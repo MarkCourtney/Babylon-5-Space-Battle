@@ -4,24 +4,22 @@ using System.Collections.Generic;
 
 public class ArriveToFinalPoint : MonoBehaviour {
 
-	List<Vector3> points = new List<Vector3>();
-	Vector3 currentPoint;
-	float maxForce, maxSpeed, mass;
- 	Vector3 desiredVelocity, steering;
-	float distance, rampedSpeed, clippedSpeed, slowingDistance;
-	Vector3 desired, acceleration, targetOffSet;
-	public Vector3 velocity;
+	Vector3[] points = {new Vector3(-112, 55, -345),
+						new Vector3(-51, 55, -428),
+						new Vector3(0, 0, -326),
+						new Vector3(0, 0, -250),
+						new Vector3(0, 0, 165)};
 
+	public Vector3 velocity;
+	Vector3 currentPoint, desiredVelocity, steering,  desired, acceleration, targetOffSet;
+
+	float distance, rampedSpeed, clippedSpeed, slowingDistance, time, maxForce, maxSpeed, mass;
 	int i;
-	float time;
+	Seek s;
 
 	void Start () {
 
-		points.Add(new Vector3(-112, 55, -345));
-		points.Add(new Vector3(-51, 55, -428));
-		points.Add(new Vector3(0, 0, -326));
-		points.Add(new Vector3(0, 0, -250));
-		points.Add(new Vector3(0, 0, 165));
+
 
 		maxForce = 10f;
 		maxSpeed = 50f;

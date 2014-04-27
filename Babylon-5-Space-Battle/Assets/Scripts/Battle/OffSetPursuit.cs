@@ -4,18 +4,16 @@ using System.Collections;
 public class OffSetPursuit : TimeKeeper {
 
 	GameObject leader;
-	Vector3 target, targetOffSet;
-	float lookAhead, maxSpeed;
 	public Vector3 offSet;
-	float dist;
-	Vector3 velocity;
-	float mass;
-	float timeHit, time;
 
+
+	Vector3 target, targetOffSet, desiredVelocity, steering, desired, velocity;
+	Vector3 globalUp, accelUp, bankUp, tempUp;
+
+	float timeHit, time, mass, lookAhead, maxSpeed, dist, speed, smoothRate;
 	float distance, slowingDistance, rampedSpeed, clippedSpeed;
-	Vector3 desiredVelocity, steering;
-	Vector3 desired;
 	int count;
+
 	public LaserShot laserShort;
 	public bool stayFollowing;
 	
@@ -23,10 +21,13 @@ public class OffSetPursuit : TimeKeeper {
 	GameObject timeHolder;
 	
 	PersueAndAttack pAA;
+
+	Arrive a;
 	
 	
 	void Start () {
-		
+
+		a = gameObject.GetComponent<Arrive>();
 		pAA = GetComponent<PersueAndAttack>();
 
 		leader = GameObject.FindGameObjectWithTag("Leader");
@@ -57,7 +58,6 @@ public class OffSetPursuit : TimeKeeper {
 
 	Vector3 OffSetArrive() {
 
-
 		target = offSet + leader.transform.position;
 		dist = (target - transform.position).magnitude;
 		lookAhead = dist / maxSpeed;
@@ -69,7 +69,8 @@ public class OffSetPursuit : TimeKeeper {
 
 		time += Time.deltaTime;
 
-		if((tk.TotalTime > 25 && tk.TotalTime < 29) || tk.TotalTime > 41 && tk.TotalTime < 44 || tk.TotalTime > 57 && tk.TotalTime < 62 || tk.TotalTime > 68 && tk.TotalTime < 72)
+		// Shot double lasers between the given time deltas
+		if((tk.TotalTime > 25 && tk.TotalTime < 29) || tk.TotalTime > 42 && tk.TotalTime < 44 || tk.TotalTime > 57 && tk.TotalTime < 62 || tk.TotalTime > 69 && tk.TotalTime < 72)
 		{
 			if(time > timeHit && count < 15)
 			{
@@ -85,12 +86,13 @@ public class OffSetPursuit : TimeKeeper {
 			}
 		}
 
+
+		// If stayFollowing boolean is true then remove this script
+		// And turn on the PersurAndAttack script
 		if(tk.TotalTime > 42 && !stayFollowing)
 		{
-			// turn on other script
-			// remove this script
-			Destroy(gameObject.GetComponent("OffSetPursuit"));
 			pAA.enabled = true;
+			Destroy(gameObject.GetComponent("OffSetPursuit"));
 		}
 
 //		if(tk.TotalTime > 39.5f && tk.TotalTime < 44)
@@ -121,28 +123,21 @@ public class OffSetPursuit : TimeKeeper {
 		transform.position += velocity * Time.deltaTime;
 
 
-		//transform.rotation = Quaternion.LookRotation(velocity);
-		//transform.rotation = Quaternion.LookRotation(velocity);
-		// the length of this global-upward-pointing vector controls the vehicle's
-		// tendency to right itself as it is rolled over from turning acceleration
-		Vector3 globalUp = new Vector3(0, 0.2f, 0);
-		// acceleration points toward the center of local path curvature, the
-		// length determines how much the vehicle will roll while turning
-		Vector3 accelUp = acceleration * 0.05f;
-		// combined banking, sum of UP due to turning and global UP
-		Vector3 bankUp = accelUp + globalUp;
-		// blend bankUp into vehicle's UP basis vector
-		float smoothRate = Time.deltaTime * 3.0f;
-		Vector3 tempUp = transform.up;
+		// Apply banking to the ship
+		globalUp = new Vector3(0, 0.2f, 0);
+		accelUp = acceleration * 0.02f;
+		bankUp = accelUp + globalUp;
+		smoothRate = Time.deltaTime * 3.0f;
+		tempUp = transform.up;
 		Utilities.BlendIntoAccumulator(smoothRate, bankUp, ref tempUp);
 		
-		float speed = velocity.magnitude;
+		speed = velocity.magnitude;
 		if (speed > 0.0001f)
 		{
 			transform.forward = velocity;
 			transform.forward.Normalize();
 			transform.LookAt(transform.position + transform.forward, tempUp);
-
+			
 			velocity *= 0.99f;
 		}
 	}
