@@ -13,7 +13,7 @@ public class LaserShot : MonoBehaviour {
 
 		transform.position += transform.forward * 100 * Time.deltaTime;
 
-		if(lifeDuration > 10)
+		if(lifeDuration > 5)
 		{
 			Destroy(gameObject);
 		}

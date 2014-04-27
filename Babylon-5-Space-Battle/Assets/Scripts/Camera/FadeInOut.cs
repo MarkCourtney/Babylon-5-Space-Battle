@@ -5,38 +5,24 @@ public class FadeInOut : MonoBehaviour {
 
 	public Texture2D backgroundColor;
 	public float alpha;
-	public bool fadeIn, fadeOut;
 	string level;
-	float time;
+
+	TimeKeeper tk;
+	GameObject timeHolder;
 	
 	void Start () {
 
-		fadeIn = true;
-		fadeOut = false;
-
-		alpha = 1.0f;
-
-		time = 0.0f;
+		timeHolder = GameObject.FindGameObjectWithTag("Time");
+		tk = timeHolder.GetComponent<TimeKeeper>();
 	}
 
 	
 	public void loadLevel(string levelName)
 	{
-		fadeIn = false;
-		fadeOut = true;
 		level = levelName;
 	}
+	
 
-	public void startLevel(string levelName)
-	{
-		fadeIn = true;
-	}
-	
-	void Update()	
-	{
-		time += Time.deltaTime;
-	}
-	
 	void drawTexture()
 	{
 		GUI.color = new Color(0, 0, 0, alpha);
@@ -46,7 +32,15 @@ public class FadeInOut : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if(time > 20 && Application.loadedLevel == 0)
+		if(Application.loadedLevel == 0 && tk.TotalTime < 20)
+		{
+			alpha -= 0.0030f;
+			drawTexture();
+			
+			if(alpha < 0)
+				alpha = 0;
+		}
+		else if(Application.loadedLevel == 0 && tk.TotalTime > 20)
 		{
 			loadLevel("Battle");
 			alpha += 0.0025f;
@@ -57,24 +51,20 @@ public class FadeInOut : MonoBehaviour {
 				Application.LoadLevel(level);
 			}
 		}
-		else if(Application.loadedLevel == 0 && time < 20)
-		{
-			alpha -= 0.0030f;
-			drawTexture();
 
-			if(alpha < 0)
-				alpha = 0;
+
+		// Fade out after 75 seconds
+		if(Application.loadedLevel == 1 && alpha <= 1 && tk.TotalTime >= 80)
+		{
+			alpha += 0.0035f;
+			drawTexture();
 		}
-
-		if(Application.loadedLevel == 1 && alpha >= 0)
+		// Fade in at the beginning of the level
+		else if(Application.loadedLevel == 1 && alpha >= 0)
 		{
-			alpha -= 0.0030f;
+			alpha -= 0.0035f;
 			drawTexture();
-
-			if(alpha <= 0)
-			{
-				Destroy(GetComponent("FadeInOut"));
-			}
+			
 		}
 	}
 }

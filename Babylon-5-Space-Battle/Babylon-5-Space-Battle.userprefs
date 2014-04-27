@@ -1,17 +1,18 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Battle/RandomWalk.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/AudioController.cs">
     <Files>
-      <File FileName="Assets/Scripts/Battle/PersueAndAttack.cs" Line="24" Column="3" />
-      <File FileName="Assets/Scripts/Battle/PathFollowing.cs" Line="76" Column="25" />
-      <File FileName="Assets/Scripts/Prologue/PrologueCameraChanger.cs" Line="12" Column="3" />
-      <File FileName="Assets/Scripts/Battle/OffSetPursuit.cs" Line="118" Column="35" />
-      <File FileName="Assets/Scripts/Prologue/PrologueOffSetPursuit.cs" Line="23" Column="55" />
-      <File FileName="Assets/Scripts/Battle/BattleCameraChanger.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Battle/LaserLongShot.cs" Line="28" Column="32" />
-      <File FileName="Assets/Scripts/Camera/FollowLeaderAndMove.cs" Line="13" Column="55" />
-      <File FileName="Assets/Scripts/Battle/RotateCannon.cs" Line="23" Column="3" />
-      <File FileName="Assets/Scripts/Battle/RandomWalk.cs" Line="12" Column="13" />
+      <File FileName="Assets/Scripts/Battle/BattleCameraChanger.cs" Line="16" Column="16" />
+      <File FileName="Assets/Scripts/Battle/DestroyParticleEffect.cs" Line="22" Column="14" />
+      <File FileName="Assets/Scripts/Battle/LaserLongShot.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/OffSetPursuit.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/PersueAndAttack.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Battle/RandomWalk.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Camera/FadeInOut.cs" Line="55" Column="3" />
+      <File FileName="Assets/AudioController.cs" Line="22" Column="4" />
+      <File FileName="Assets/Scripts/Multiple/BackgroundAudio.cs" Line="12" Column="43" />
+      <File FileName="Assets/Scripts/Multiple/TimeKeeper.cs" Line="21" Column="35" />
+      <File FileName="Assets/Scripts/Battle/PathFollowing.cs" Line="71" Column="173" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

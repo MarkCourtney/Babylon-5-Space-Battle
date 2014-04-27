@@ -12,13 +12,14 @@ public class BattleCameraChanger : TimeKeeper {
 	
 	//new Vector3(175, -20, 650)
 	public Camera followCam;
+	//new Vector3(-40, 50, 1150)
+	//Vector3.zero
 	public Camera stationaryCam;
-	Vector3[] cameraPos = {new Vector3(10f, 7f, 0), new Vector3(0, 0, 420), new Vector3(275, -107, 540), 	new Vector3(205, 18, 580), 	new Vector3(147, -25, 1245), 	new Vector3(-40, 50, 1150), new Vector3(-400, 100, 950),	new Vector3(130, -40, 820)};
-	Vector3[] cameraRot = {new Vector3(0, 0, 0), 	new Vector3(0, 0, 335), Vector3.zero,  					new Vector3(10, 330, 320), 	new Vector3(27, 227, 0), 		Vector3.zero,				new Vector3(30, 90, 0), 		Vector3.zero};
+	Vector3[] cameraPos = {new Vector3(10f, 7f, 0), new Vector3(0, 0, 420), new Vector3(275, -107, 540), 	new Vector3(205, 18, 580), 	new Vector3(147, -25, 1245), 	new Vector3(-40, 50, 1150), new Vector3(-500, 300, 1000),	new Vector3(130, -40, 820)};
+	Vector3[] cameraRot = {new Vector3(0, 0, 0), 	new Vector3(0, 0, 335), Vector3.zero,  					new Vector3(10, 330, 320), 	new Vector3(27, 227, 0), 		Vector3.zero,				new Vector3(40, 100, 0), 		Vector3.zero};
 	public GameObject leader;
 	GameObject timeHolder;
-	
-	FadeInOut fIO;
+
 	FollowEnemy sCamfE;
 	FollowLeader sCamfL, fCamfL;
 	FollowLeaderAndMove sCamfLAM, fCamfLAM;
@@ -30,8 +31,6 @@ public class BattleCameraChanger : TimeKeeper {
 
 	void Start () {
 
-		fIO = stationaryCam.GetComponent<FadeInOut>();
-		fIO.fadeIn = true;
 		sCamfL = stationaryCam.GetComponent<FollowLeader>();
 		sCamfE = stationaryCam.GetComponent<FollowEnemy>();
 		sCamfLAM = stationaryCam.GetComponent<FollowLeaderAndMove>();
@@ -71,14 +70,16 @@ public class BattleCameraChanger : TimeKeeper {
 	
 	void Update () {
 
+		if(tk.TotalTime > 78)
+		{
 
+		}
 		if(tk.TotalTime > 73)
 		{
 			turnOnFollowCamera();
-			sCamfL.enabled = false;
 			fCamfLAM.enabled = false;
 			fCamfL.enabled = true;
-			changeCameraTransform(followCam, leader.transform.position + new Vector3(15,10,15), Vector3.zero);
+			changeCameraTransform(followCam, leader.transform.position + new Vector3(15, 10, 15), Vector3.zero);
 		}
 		else if(tk.TotalTime > 59 && tk.TotalTime < 73 && changeC)
 		{
@@ -90,7 +91,7 @@ public class BattleCameraChanger : TimeKeeper {
 		else if(tk.TotalTime > 46f && tk.TotalTime < 59 && !changeC)
 		{
 			sCamfLAM.target = GameObject.FindGameObjectWithTag("FollowSeek");
-			sCamfLAM.enabled = true;
+			sCamfLAM.enabled = false;
 			sCamfL.enabled = false;
 			changeCameraTransform(stationaryCam, cameraPos[6], cameraRot[6]);
 			changeC = true;

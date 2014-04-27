@@ -59,7 +59,6 @@ public class OffSetPursuit : TimeKeeper {
 
 
 		target = offSet + leader.transform.position;
-
 		dist = (target - transform.position).magnitude;
 		lookAhead = dist / maxSpeed;
 		target = target + (lookAhead * leader.transform.forward);
@@ -70,7 +69,7 @@ public class OffSetPursuit : TimeKeeper {
 
 		time += Time.deltaTime;
 
-		if((tk.TotalTime > 25 && tk.TotalTime < 29) || tk.TotalTime > 41 && tk.TotalTime < 44 || tk.TotalTime > 57 && tk.TotalTime < 62 || tk.TotalTime > 66 && tk.TotalTime < 69)
+		if((tk.TotalTime > 25 && tk.TotalTime < 29) || tk.TotalTime > 41 && tk.TotalTime < 44 || tk.TotalTime > 57 && tk.TotalTime < 62 || tk.TotalTime > 68 && tk.TotalTime < 72)
 		{
 			if(time > timeHit && count < 15)
 			{

@@ -8,6 +8,8 @@ public class PersueAndAttack : MonoBehaviour {
 	public GameObject laserShort;
 	Vector3 target, velocity, desiredVelocity;
 	float distance, maxSpeed, lookAhead, maxForce, mass;
+	TimeKeeper tk;
+	GameObject timeHolder;
 
 
 	int count;
@@ -19,12 +21,14 @@ public class PersueAndAttack : MonoBehaviour {
 		targetObjects = GameObject.FindGameObjectsWithTag("Target");
 		targetToKill = targetObjects[Random.Range(0, targetObjects.Length)];
 
-
 		velocity = Vector3.zero;
 
 		maxForce = 10;
 		maxSpeed = 50;
 		mass = 0.1f;
+
+		timeHolder = GameObject.FindGameObjectWithTag("Time");
+		tk = timeHolder.GetComponent<TimeKeeper>();
 	}
 	
 	Vector3 Seek(Vector3 target)
@@ -57,7 +61,7 @@ public class PersueAndAttack : MonoBehaviour {
 	void Update () {
 
 
-		if(Vector3.Distance(transform.position, targetToKill.transform.position) < 100)
+		if(Vector3.Distance(transform.position, targetToKill.transform.position) < 100 && tk.TotalTime < 65)
 		{
 			if(count < 5)
 			{
@@ -65,16 +69,16 @@ public class PersueAndAttack : MonoBehaviour {
 				Instantiate(laserShort, transform.position + new Vector3(-0.5f, 0.4f, 4.5f), transform.rotation);
 				count++;
 			}
-		}
 
-		if(count > 4)
-		{
-			time += Time.deltaTime;
-
-			if(time > 4)
+			if(count > 4)
 			{
-				count = 0;
-				time = 0.0f;
+				time += Time.deltaTime;
+				
+				if(time > 4)
+				{
+					count = 0;
+					time = 0.0f;
+				}
 			}
 		}
 

@@ -16,8 +16,8 @@ public class TimeKeeper : MonoBehaviour {
 		totalTime = 0.0f;
 	}
 
-	void Update () {
+	void FixedUpdate () {
 	
-		totalTime += Time.deltaTime;
+		totalTime += Time.fixedDeltaTime;
 	}
 }

@@ -66,11 +66,17 @@ public class PathFollowing : TimeKeeper {
 
 	void Update () {
 	
-		time += Time.deltaTime;
-
-
-		if((tk.TotalTime > 25 && tk.TotalTime < 29) || tk.TotalTime > 41 && tk.TotalTime < 44 || tk.TotalTime > 59 && tk.TotalTime < 62 || tk.TotalTime > 66 && tk.TotalTime < 69)
+		if(tk.TotalTime > 95)
 		{
+			print (tk.TotalTime);
+			Application.Quit();
+		}
+
+
+		if((tk.TotalTime > 25 && tk.TotalTime < 29) || tk.TotalTime > 41 && tk.TotalTime < 44 || tk.TotalTime > 59 && tk.TotalTime < 62 || tk.TotalTime > 69f && tk.TotalTime < 71)
+		{
+			time += Time.deltaTime;
+
 			if(time > 1f && count < 15)
 			{
 				Instantiate(laserShort, transform.position + new Vector3(0.5f, 0.4f, 4.5f), transform.rotation);
@@ -92,8 +98,6 @@ public class PathFollowing : TimeKeeper {
 		RaycastHit hit;
 		
 		Vector3 hitNormal = Vector3.zero;
-
-		Debug.DrawRay(transform.position, transform.forward * 100, Color.red);
 
 		if(Physics.Raycast(transform.position, transform.forward, out hit, 150.0f))
 		{

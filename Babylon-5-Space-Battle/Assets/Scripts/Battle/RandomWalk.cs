@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RandomWalk : TimeKeeper {
 
-	Vector3 randomWalkTarget;
+	Vector3 randomWalkTarget, oldTarget;
 	float maxSpeed, maxForce;
 	Vector3 velocity;
 	public Vector3 startBound, endBound;
@@ -12,15 +12,14 @@ public class RandomWalk : TimeKeeper {
 	float mass;
 
 
+
 	void Start () {
 	
 		mass = 0.175f;
 		maxSpeed = 50;
 		maxForce = 10;
 
-		randomWalkTarget.x = returnRandomPosition().x;
-		randomWalkTarget.y = returnRandomPosition().y;
-		randomWalkTarget.z = returnRandomPosition().z;
+		randomWalkTarget = returnRandomPosition();
 
 		timeHolder = GameObject.FindGameObjectWithTag("Time");
 		tk = timeHolder.GetComponent<TimeKeeper>();
@@ -46,12 +45,16 @@ public class RandomWalk : TimeKeeper {
 	Vector3 returnRandomPosition()
 	{
 		int x, y, z;
+		Vector3 newTarget;
 
 		x = (int) Random.Range(startBound.x, endBound.x);
 		y = (int) Random.Range(startBound.y, endBound.y);
 		z = (int) Random.Range(startBound.z, endBound.z);
 
-		return new Vector3(x,y,z);;
+		newTarget = new Vector3(x,y, z);
+
+		return newTarget;
+		
 	}
 
 	Vector3 randomWalk()
@@ -60,9 +63,13 @@ public class RandomWalk : TimeKeeper {
 
 		if (dist < 50)
 		{
-			randomWalkTarget.x = returnRandomPosition().x;
-			randomWalkTarget.y = returnRandomPosition().y;
-			randomWalkTarget.z = returnRandomPosition().z;
+			oldTarget = randomWalkTarget;
+			randomWalkTarget = returnRandomPosition();
+
+			if(Vector3.Distance(oldTarget, randomWalkTarget) < 100)
+			{
+				randomWalkTarget = returnRandomPosition();
+			}
 		}
 		return seek(randomWalkTarget);
 	}
@@ -70,16 +77,10 @@ public class RandomWalk : TimeKeeper {
 
 	void Update () {
 
-
-		if(tk.TotalTime > 22.5f && tk.TotalTime < 25.5f)
-		{
-			velocity = Vector3.back * 30;
-		}
-		else if(tk.TotalTime < 22.5f)
-		{
-			velocity = Vector3.zero;
-		}
-		else
+		// Keep the ships stationary until 22.5 seconds have passed
+		// Then move forward for 3 seconds
+		// After this apply the randomWalk() method
+		if(tk.TotalTime > 25.5f)
 		{
 			Vector3 acceleration = randomWalk() / mass;
 			
@@ -90,6 +91,10 @@ public class RandomWalk : TimeKeeper {
 				velocity = Vector3.Normalize(velocity) * maxSpeed;
 			}
 
+		}
+		if(tk.TotalTime > 22.5f && tk.TotalTime < 25.5f)
+		{
+			velocity = Vector3.back * 30;
 		}
 		
 		transform.position += velocity * Time.deltaTime;

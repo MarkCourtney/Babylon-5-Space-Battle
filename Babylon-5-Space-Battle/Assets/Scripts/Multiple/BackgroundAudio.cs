@@ -8,34 +8,15 @@ public class BackgroundAudio : MonoBehaviour {
 
 	void Awake() {
 	
+		// Keep the audio through the changing of scenes
 		DontDestroyOnLoad(transform.gameObject);
 	}
 
 
 	void Start()
 	{
+		// Play the audio clip
 		audio.clip = clip;
 		audio.Play();
 	}
-
-
-//	void turnOff()
-//	{
-//		if(audio.volume > 0)
-//			audio.volume -= 0.005f;
-//	}
-//
-//	void turnOn()
-//	{
-//		if(audio.volume < 1)
-//			audio.volume += 0.005f;
-//	}
-//
-//	void Update() {
-//
-//	
-//		Invoke("turnOff", 20);
-//
-//		Invoke("turnOn", 23);
-//	}
 }

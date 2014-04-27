@@ -25,7 +25,6 @@ public class LaserLongShot : MonoBehaviour {
 		Destroy(gameObject);
 		if(col.gameObject.name == "Omega-X" || col.gameObject.name == ("LaserLong(Clone)") )
 		{
-			print (col.gameObject.name);
 			Instantiate(explosion, transform.position + transform.forward * 300, Quaternion.identity);
 
 		}
