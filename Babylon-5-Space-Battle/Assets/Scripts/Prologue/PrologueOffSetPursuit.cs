@@ -1,22 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PrologueOffSetPursuit : MonoBehaviour {
+public class PrologueOffSetPursuit : Behaviours {
 
 	GameObject leader;
-	Vector3 target, targetOffSet;
-	float lookAhead, maxSpeed;
-	public Vector3 offSet;
-	float dist;
-	Vector3 velocity;
-	float mass;
 	float timeHit, time;
 	
-	float distance, slowingDistance, rampedSpeed, clippedSpeed;
-	Vector3 desiredVelocity, steering;
-	Vector3 desired;
 	int count;
-	public LaserShot laserShort;
 
 	void Start () {
 	
@@ -26,44 +16,14 @@ public class PrologueOffSetPursuit : MonoBehaviour {
 		slowingDistance = 20f;
 	}
 
-
-
-	Vector3 Arrive(Vector3 target)
-	{
-		targetOffSet = target - transform.position;
-		
-		distance = targetOffSet.magnitude;
-		
-		rampedSpeed = maxSpeed * (distance / slowingDistance);
-		
-		clippedSpeed = Mathf.Min(maxSpeed, rampedSpeed);
-		
-		desired = (clippedSpeed / distance) * targetOffSet;
-		
-		return (desired - velocity);
-	}
 	
-	
-	Vector3 OffSetArrive() {
-		
-		
-		target = offSet + leader.transform.position;
-		
-		dist = (target - transform.position).magnitude;
-		lookAhead = dist / maxSpeed;
-		target = target + (lookAhead * leader.transform.forward);
-		return Arrive(target);
-	}
 
-
-
-	
 	// Update is called once per frame
 	void Update () {
 	
 		time += Time.deltaTime;
 
-		Vector3 acceleration = OffSetArrive() / mass;
+		acceleration = OffSetArrive(Vector3.zero, leader.transform) / mass;
 		
 		velocity = velocity + acceleration * Time.deltaTime;
 		

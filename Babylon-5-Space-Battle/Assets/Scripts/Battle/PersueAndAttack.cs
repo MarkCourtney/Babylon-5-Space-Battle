@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PersueAndAttack : MonoBehaviour {
+public class PersueAndAttack : Behaviours {
 
 	GameObject[] targetObjects;
 	GameObject targetToKill;
 	public GameObject laserShort;
-	Vector3 target, velocity, desiredVelocity;
-	float distance, maxSpeed, lookAhead, maxForce, mass, smoothRate, speed;
+	Vector3 target;
+	float smoothRate, speed;
 	TimeKeeper tk;
 	GameObject timeHolder;
 
@@ -18,13 +18,8 @@ public class PersueAndAttack : MonoBehaviour {
 	int count;
 	float time;
 	
-	Seek s;
-	Arrive a;
 	
 	void Start () {
-		
-		s = gameObject.AddComponent<Seek>();
-		a = gameObject.AddComponent<Arrive>();
 
 		time = 0;
 		targetObjects = GameObject.FindGameObjectsWithTag("Target");
@@ -39,16 +34,7 @@ public class PersueAndAttack : MonoBehaviour {
 		timeHolder = GameObject.FindGameObjectWithTag("Time");
 		tk = timeHolder.GetComponent<TimeKeeper>();
 	}
-	
-	
-	
-	Vector3 Arrive()
-	{	
-		distance = (targetToKill.transform.position - transform.position).magnitude;
-		lookAhead = distance / maxSpeed;
-		target = targetToKill.transform.position + (lookAhead * targetToKill.transform.forward);
-		return s.seek(target, transform.position, velocity, maxSpeed, maxForce);
-	}
+
 	
 	
 	void Update () {
@@ -78,7 +64,7 @@ public class PersueAndAttack : MonoBehaviour {
 
 
 
-		Vector3 acceleration = Arrive() / mass;
+		Vector3 acceleration = Arrive(targetToKill.transform.position) / mass;
 		
 		velocity = velocity + acceleration * Time.deltaTime;
 		

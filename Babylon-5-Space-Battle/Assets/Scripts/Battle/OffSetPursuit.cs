@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class OffSetPursuit : TimeKeeper {
+public class OffSetPursuit : Behaviours {
 
 	GameObject leader;
-	public Vector3 offSet;
 
-
-	Vector3 target, targetOffSet, desiredVelocity, steering, desired, velocity;
 	Vector3 globalUp, accelUp, bankUp, tempUp;
 
-	float timeHit, time, mass, lookAhead, maxSpeed, dist, speed, smoothRate;
-	float distance, slowingDistance, rampedSpeed, clippedSpeed;
+	float timeHit, time, smoothRate, speed;
 	int count;
 
 	public LaserShot laserShort;
@@ -22,12 +18,10 @@ public class OffSetPursuit : TimeKeeper {
 	
 	PersueAndAttack pAA;
 
-	Arrive a;
 	
 	
 	void Start () {
 
-		a = gameObject.GetComponent<Arrive>();
 		pAA = GetComponent<PersueAndAttack>();
 
 		leader = GameObject.FindGameObjectWithTag("Leader");
@@ -39,32 +33,7 @@ public class OffSetPursuit : TimeKeeper {
 		tk = timeHolder.GetComponent<TimeKeeper>();
 	}
 
-
-	Vector3 Arrive(Vector3 target)
-	{
-		targetOffSet = target - transform.position;
-		
-		distance = targetOffSet.magnitude;
-		
-		rampedSpeed = maxSpeed * (distance / slowingDistance);
-		
-		clippedSpeed = Mathf.Min(maxSpeed, rampedSpeed);
-		
-		desired = (clippedSpeed / distance) * targetOffSet;
-		
-		return (desired - velocity);
-	}
-
-
-	Vector3 OffSetArrive() {
-
-		target = offSet + leader.transform.position;
-		dist = (target - transform.position).magnitude;
-		lookAhead = dist / maxSpeed;
-		target = target + (lookAhead * leader.transform.forward);
-		return Arrive(target);
-	}
-
+	
 	void Update () {
 
 		time += Time.deltaTime;
@@ -111,7 +80,7 @@ public class OffSetPursuit : TimeKeeper {
 //		}
 
 
-		Vector3 acceleration = OffSetArrive() / mass;
+		Vector3 acceleration = OffSetArrive(offSet, leader.transform) / mass;
 		
 		velocity = velocity + acceleration * Time.deltaTime;
 

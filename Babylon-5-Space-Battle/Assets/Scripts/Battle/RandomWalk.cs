@@ -1,47 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RandomWalk : TimeKeeper {
+public class RandomWalk : Behaviours {
 
 	Vector3 randomWalkTarget, oldTarget;
-	float maxSpeed, maxForce;
-	Vector3 velocity;
 	public Vector3 startBound, endBound;
 	TimeKeeper tk;
 	GameObject timeHolder;
-	float mass;
-	Seek s;
 
 
 	void Start () {
 	
-		s = gameObject.AddComponent<Seek>();
 		mass = 0.175f;
-		maxSpeed = 50;
-		maxForce = 10;
+		maxSpeed = 60;
+		maxForce = 15;
 
 		randomWalkTarget = returnRandomPosition();
 
 		timeHolder = GameObject.FindGameObjectWithTag("Time");
 		tk = timeHolder.GetComponent<TimeKeeper>();
 	}
-
-
-	Vector3 seek(Vector3 target)
-	{
-		Vector3 desired = target - transform.position;
-		desired.Normalize();
-		desired *= maxSpeed;
-		
-		Vector3 force = desired - velocity;
-		
-		if (force.magnitude > maxForce)
-		{
-			return Vector3.Normalize(force) * maxForce;
-		}
-		
-		return force;
-	}
+	
 
 	Vector3 returnRandomPosition()
 	{
@@ -72,7 +51,7 @@ public class RandomWalk : TimeKeeper {
 				randomWalkTarget = returnRandomPosition();
 			}
 		}
-		return s.seek(randomWalkTarget, transform.position, velocity, maxSpeed, maxForce);
+		return Seek(randomWalkTarget);
 	}
 
 

@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ArriveToFinalPoint : MonoBehaviour {
+public class ArriveToFinalPoint : Behaviours {
 
 	Vector3[] points = {new Vector3(-112, 55, -345),
 						new Vector3(-51, 55, -428),
@@ -10,12 +10,10 @@ public class ArriveToFinalPoint : MonoBehaviour {
 						new Vector3(0, 0, -250),
 						new Vector3(0, 0, 165)};
 
-	public Vector3 velocity;
-	Vector3 currentPoint, desiredVelocity, steering,  desired, acceleration, targetOffSet;
+	Vector3 currentPoint;
 
-	float distance, rampedSpeed, clippedSpeed, slowingDistance, time, maxForce, maxSpeed, mass;
+	float time;
 	int i;
-	Seek s;
 
 	void Start () {
 
@@ -30,45 +28,12 @@ public class ArriveToFinalPoint : MonoBehaviour {
 		i = 0;
 	}
 
-
-	Vector3 Seek()
-	{
-		Vector3 desired = currentPoint - transform.position;
-		desired.Normalize();
-		desired *= maxSpeed;
-		
-		Vector3 force = desired - velocity;
-		
-		if (force.magnitude > maxForce)
-		{
-			return Vector3.Normalize(force) * maxForce;
-		}
-		
-		return force;
-	}
-
-
-	Vector3 Arrive()
-	{
-		targetOffSet = currentPoint - transform.position;
-		
-		distance = targetOffSet.magnitude;
-		
-		rampedSpeed = maxSpeed * (distance / slowingDistance);
-		
-		clippedSpeed = Mathf.Min(maxSpeed, rampedSpeed);
-		
-		desired = (clippedSpeed / distance) * targetOffSet;
-		
-		return (desired - velocity);
-	}
 	
 	
 	Vector3 SeekThenArrive()
 	{
 		currentPoint = points[i];
 
-		//print (Vector3.Distance(transform.position, currentPoint.transform.position));
 		if(Vector3.Distance(transform.position, currentPoint) < 20)
 		{
 			i++;
@@ -82,15 +47,13 @@ public class ArriveToFinalPoint : MonoBehaviour {
 			}
 		}
 
-
-
 		if(i != 3)
 		{
-			return Seek();
+			return Seek(currentPoint);
 		}
 		else
 		{
-			return Arrive();
+			return Arrive(currentPoint);
 		}
 	}
 

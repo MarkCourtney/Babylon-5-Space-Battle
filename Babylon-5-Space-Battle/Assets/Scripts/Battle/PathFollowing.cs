@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 
-public class PathFollowing : TimeKeeper {
+public class PathFollowing : Behaviours {
 
 	public GameObject laserShort;
 	GameObject target;
@@ -16,21 +16,15 @@ public class PathFollowing : TimeKeeper {
 								new Vector3(165, 280, 825), new Vector3(165, 120, 825), new Vector3(270, 0, 825), 
 								new Vector3(230, -100, 825), new Vector3(60, -30, 975),  new Vector3(60, -30, 3000)};
 
-	Vector3 desiredVelocity, steering, acceleration, velocity;
 	Vector3 globalUp, accelUp, bankUp, tempUp;
 	Vector3 hitNormal = Vector3.zero;
 
-	float maxForce, maxSpeed, mass, time, smoothRate, speed;
+	float time, smoothRate, speed;
 	int count, currentPathPos;
-	Seek s;
-
-
-	
 
 	
 	void Start () {
 
-		s = gameObject.AddComponent<Seek>();
 		maxForce = 10;
 		maxSpeed = 50;
 
@@ -47,7 +41,6 @@ public class PathFollowing : TimeKeeper {
 	// Then change to the next path position
 	void checkClose()
 	{
-
 		if(Vector3.Distance(transform.position, pathPositions[currentPathPos]) < 5)
 		{
 			currentPathPos++;
@@ -91,7 +84,7 @@ public class PathFollowing : TimeKeeper {
 			}
 		}
 
-		acceleration = (s.seek(pathPositions[currentPathPos], transform.position, velocity, maxSpeed, maxForce) + hitNormal) / mass;
+		acceleration = (Seek(pathPositions[currentPathPos]) + hitNormal) / mass;
 		velocity = velocity + acceleration * Time.deltaTime;
 		
 		if (velocity.magnitude > maxSpeed)
